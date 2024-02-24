@@ -1,0 +1,6 @@
+[submodule "packages/bw-web-client"]
+	path = packages/bw-web-client
+	url = git@github.com:nikelaz/bw-web-client.git
+[submodule "packages/bw-backend-service"]
+	path = packages/bw-backend-service
+	url = git@github.com:nikelaz/bw-backend-service.git
