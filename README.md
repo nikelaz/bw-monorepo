@@ -12,6 +12,8 @@ This is the monorepo for the Budget Warden project (a personal finance tracking 
 2. [**UI/UX Design**](https://youtu.be/D_TpsGgVdwY)
 3. [**TypeORM Models and Validation**](https://youtu.be/BxH9NYMuTrU)
 4. [**Fastify User Authentication with JWT**](https://youtu.be/vVF8Szpx8Ho)
+5. [**RESTful Node.js Controllers with Fastify**](https://youtu.be/vgfkQX8VVEM)
+6. [**Docker Dev Environment with DB, Server and Client**](https://youtu.be/Cco_uGFwJyg)
 
 ## Submodules
 
