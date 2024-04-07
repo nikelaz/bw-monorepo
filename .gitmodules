@@ -4,3 +4,6 @@
 [submodule "packages/bw-backend-service"]
 	path = packages/bw-backend-service
 	url = git@github.com:nikelaz/bw-backend-service.git
+[submodule "packages/bw-ui"]
+	path = packages/bw-ui
+	url = git@github.com:nikelaz/bw-ui.git
