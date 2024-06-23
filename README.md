@@ -14,6 +14,11 @@ This is the monorepo for the Budget Warden project (a personal finance tracking 
 4. [**Fastify User Authentication with JWT**](https://youtu.be/vVF8Szpx8Ho)
 5. [**RESTful Node.js Controllers with Fastify**](https://youtu.be/vgfkQX8VVEM)
 6. [**Docker Dev Environment with DB, Server and Client**](https://youtu.be/Cco_uGFwJyg)
+7. [**Tailwind CSS Theme Setup**](https://youtu.be/rm-XI9W0Mts)
+8. [**Components Library with Vite & Storybook**](https://youtu.be/ESkD6Ouvs2s)
+9. [**Form Components**](https://youtu.be/IrqcSSRCaTQ)
+10. [**Table, Data Grid and Modal Dialog Components**](https://youtu.be/WmA_LGg4ywc)
+11. [**Navigation and Dropdown Components**](https://youtu.be/0yYdZ0a9fP4)
 
 ## Submodules
 
