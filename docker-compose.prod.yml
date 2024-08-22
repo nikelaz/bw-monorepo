@@ -22,7 +22,7 @@ services:
       - /usr/app/node_modules
     networks:
       - shared-network
-    command: npm run start
+    command: node ./dist/index.js
 
   web-client:
     build: packages/bw-web-client
