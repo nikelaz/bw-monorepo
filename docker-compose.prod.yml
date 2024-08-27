@@ -2,7 +2,9 @@ version: '3.9'
 
 services:
   backend-service:
-    build: packages/bw-backend-service
+    build:
+      context: packages/bw-backend-service
+      dockerfile: Dockerfile.prod
     restart: always
     depends_on:
       - database
@@ -25,7 +27,9 @@ services:
     command: node ./dist/index.js
 
   web-client:
-    build: packages/bw-web-client
+    build:
+      context: packages/bw-web-client
+      dockerfile: Dockerfile.prod
     restart: always
     env_file: .env
     environment:
