@@ -1,0 +1,16 @@
+name: Deployment Pipeline
+on: [workflow_dispatch]
+jobs:
+  test:
+    name: End-to-End Tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: remote into the ssh production server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          whoami
