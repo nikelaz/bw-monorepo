@@ -1,8 +1,8 @@
 name: Deployment Pipeline
 on: [workflow_dispatch]
 jobs:
-  test:
-    name: End-to-End Tests
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
     - name: remote into the ssh production server
@@ -13,4 +13,8 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          whoami
+          cd ~/bw-monorepo
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl stop budget-warden.service
+          git pull --rebase --recurse-submodules
+          docker-compose -f docker-compose.prod.yml build --no-cache
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl start budget-warden.service
