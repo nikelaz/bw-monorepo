@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "preinstall": "cd ./packages/bw-backend-service && npm install && cd ../bw-web-client && npm install && cd ../bw-ui && npm install && cd ../../"
+    "preinstall": "cd ./packages/bw-backend-service && npm install && cd ../bw-web-client && npm install && cd ../bw-ui && npm install && cd ../../",
+    "test:e2e": "docker-compose up -d && npx playwright test"
   },
   "author": "Nikola Lazarov",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "@types/node": "^22.5.4"
+  }
 }
