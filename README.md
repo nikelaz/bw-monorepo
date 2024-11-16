@@ -19,6 +19,8 @@ This is the monorepo for the Budget Warden project (a personal finance tracking 
 9. [**Form Components**](https://youtu.be/IrqcSSRCaTQ)
 10. [**Table, Data Grid and Modal Dialog Components**](https://youtu.be/WmA_LGg4ywc)
 11. [**Navigation and Dropdown Components**](https://youtu.be/0yYdZ0a9fP4)
+12. [**Next.js Authentication**](https://youtu.be/agxIP5OJCSs)
+13. [**Web Client Architecture**](https://youtu.be/711b5jOOcNE)
 
 ## Submodules
 
@@ -41,7 +43,7 @@ git submodule update --recursive
 
 ## Dependencies
 
-This project contains Node.js submodules and a docker-compose.yml file for development. To develop and avoid syntax highlighting in most editors you still need to install the NPM dependencies locally. For that make sure you have Node.js installed. The recommended version is `20.11.1 LTS`.
+This project contains Node.js submodules and a docker-compose.yml file for development. To develop and avoid syntax highlighting in most editors you still need to install the NPM dependencies locally. For that make sure you have Node.js installed. The recommended version is `22.x LTS`.
 
 You will also need docker and docker-compose installed. On a Windows/Mac system you can just install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
