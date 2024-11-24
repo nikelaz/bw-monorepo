@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "preinstall": "cd ./packages/bw-backend-service && npm install && cd ../bw-web-client && npm install && cd ../bw-ui && npm install && cd ../../",
-    "test:e2e": "docker-compose up -d && npx playwright test"
+    "test:e2e": "docker compose up -d && npx playwright test"
   },
   "author": "Nikola Lazarov",
   "license": "ISC",

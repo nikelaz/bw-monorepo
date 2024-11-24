@@ -7,3 +7,12 @@
 [submodule "packages/bw-ui"]
 	path = packages/bw-ui
 	url = git@github.com:nikelaz/bw-ui.git
+[submodule "packages/bw-sankey-charts"]
+	path = packages/bw-sankey-charts
+	url = git@github.com:nikelaz/bw-sankey-charts.git
+[submodule "packages/bw-mobile-app"]
+	path = packages/bw-mobile-app
+	url = git@github.com:nikelaz/bw-mobile-app.git
+[submodule "packages/bw-website"]
+	path = packages/bw-website
+	url = git@github.com:nikelaz/bw-website.git
