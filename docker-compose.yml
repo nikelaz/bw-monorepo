@@ -50,7 +50,7 @@ services:
       POSTGRES_PASSWORD: $PG_PASS
       POSTGRES_DB: $PG_DB
     ports:
-      - 5432:5432
+      - ${PG_PORT}:${PG_PORT}
     volumes:
        - dbdata:/var/lib/postgresql/data
     networks:
