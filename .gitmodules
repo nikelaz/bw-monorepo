@@ -16,3 +16,9 @@
 [submodule "packages/bw-website"]
 	path = packages/bw-website
 	url = git@github.com:nikelaz/bw-website.git
+[submodule "packages/bw-shared-libraries"]
+	path = packages/bw-shared-libraries
+	url = git@github.com:nikelaz/bw-shared-libraries.git
+[submodule "packages/bw-reporting-view"]
+	path = packages/bw-reporting-view
+	url = git@github.com:nikelaz/bw-reporting-view.git
