@@ -10,7 +10,7 @@ services:
     environment:
       - PORT=$BE_SERVICE_PORT
       - PG_HOST=database
-      - PG_PORT=5432
+      - PG_PORT=$PG_PORT
       - PG_USER=$PG_USER
       - PG_PASS=$PG_PASS 
       - PG_DB=$PG_DB
@@ -50,11 +50,12 @@ services:
       POSTGRES_PASSWORD: $PG_PASS
       POSTGRES_DB: $PG_DB
     ports:
-      - 5432:5432
+      - $PG_PORT:$PG_PORT
     volumes:
        - dbdata:/var/lib/postgresql/data
     networks:
       - shared-network
+    command: -p $PG_PORT
 
 networks:
   shared-network:
