@@ -1,28 +1,9 @@
 name: Deployment Pipeline
 on: [workflow_dispatch]
 jobs:
-  staging:
-    name: Staging
-    runs-on: ubuntu-latest
-    environment: staging
-    steps:
-    - name: remote into the ssh production server
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: |
-          cd ~/bw-monorepo-staging
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl stop budget-warden-staging.service
-          git pull --rebase --recurse-submodules
-          docker-compose -f docker-compose.prod.yml build --no-cache
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl start budget-warden-staging.service
   production:
     name: Production
     runs-on: ubuntu-latest
-    needs: [staging]
     environment: production
     steps:
     - name: remote into the ssh production server
