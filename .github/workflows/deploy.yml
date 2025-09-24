@@ -18,8 +18,8 @@ jobs:
           git stash
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose down 
           git pull --rebase --recurse-submodules
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose -f docker-compose.prod.yml build --no-cache
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose -f docker-compose.prod.yml up -d 
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml build --no-cache
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d 
           git stash pop
   production:
     name: Production
@@ -39,6 +39,6 @@ jobs:
           git stash
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose down 
           git pull --rebase --recurse-submodules
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose -f docker-compose.prod.yml build --no-cache
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose -f docker-compose.prod.yml up -d 
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml build --no-cache
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d 
           git stash pop
