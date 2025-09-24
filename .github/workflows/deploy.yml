@@ -16,8 +16,10 @@ jobs:
         script: |
           cd ~/bw-monorepo-stage
           git stash
+          git branch
+          git checkout staging
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose down 
-          git pull --rebase --recurse-submodules
+          git pull origin staging --rebase --recurse-submodules
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose -f docker-compose.prod.yml build --no-cache
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose -f docker-compose.prod.yml up -d 
           git stash pop
@@ -37,8 +39,10 @@ jobs:
         script: |
           cd ~/bw-monorepo
           git stash
+          git branch
+          git checkout main
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose down 
-          git pull --rebase --recurse-submodules
+          git pull origin main --rebase --recurse-submodules
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose -f docker-compose.prod.yml build --no-cache
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose -f docker-compose.prod.yml up -d 
           git stash pop
