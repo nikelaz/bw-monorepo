@@ -20,7 +20,7 @@ jobs:
           git checkout staging
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose down 
           git pull origin staging --rebase --recurse-submodules
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml build
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml build --no-cache
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d 
           git stash pop
   production:
@@ -43,6 +43,6 @@ jobs:
           git checkout main
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose down 
           git pull origin main --rebase --recurse-submodules
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml build
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml build --no-cache
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d 
           git stash pop

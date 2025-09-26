@@ -1,8 +1,8 @@
+version: "3.9"
+
 services:
   backend-service:
-    build: 
-      context: packages/bw-backend-service
-      dockerfile: Dockerfile.dev
+    image: ghcr.io/nikelaz/bw-backend-service:${BE_BRANCH_TAG}
     restart: always
     depends_on:
       - database
@@ -16,33 +16,29 @@ services:
       - PG_DB=$PG_DB
       - JWT_SECRET=$JWT_SECRET
     ports:
-      - ${BE_SERVICE_PORT}:${BE_SERVICE_PORT}
+      - "${BE_SERVICE_PORT}:${BE_SERVICE_PORT}"
     volumes:
-      - ./packages/bw-backend-service:/usr/app/
-      - /usr/app/node_modules
+      - bw-backend-data:/usr/app/data   # persist app data if needed
     networks:
       - shared-network
-    command: npx nodemon -L --exec npx ts-node ./src/index.ts
+    command: node ./dist/index.js
 
   web-client:
-    build: 
-      context: packages/bw-web-client
-      dockerfile: Dockerfile.dev
+    image: ghcr.io/nikelaz/bw-web-client:${WEB_BRANCH_TAG}
     restart: always
     env_file: .env
     environment:
       - PORT=$WEB_CLIENT_PORT
     ports:
-      - ${WEB_CLIENT_PORT}:${WEB_CLIENT_PORT}
+      - "${WEB_CLIENT_PORT}:${WEB_CLIENT_PORT}"
     volumes:
-      - ./packages/bw-web-client:/usr/app/
-      - /usr/app/node_modules
+      - bw-client-data:/usr/app/data  # persist any client data if needed
     networks:
       - shared-network
-    command: npm run dev
+    command: npm run start
 
   database:
-    image: postgres
+    image: postgres:15
     restart: always
     env_file: .env
     environment:
@@ -50,16 +46,17 @@ services:
       POSTGRES_PASSWORD: $PG_PASS
       POSTGRES_DB: $PG_DB
     ports:
-      - $PG_PORT:$PG_PORT
+      - "${PG_PORT}:${PG_PORT}"
     volumes:
        - dbdata:/var/lib/postgresql/data
     networks:
       - shared-network
-    command: -p $PG_PORT
 
 networks:
   shared-network:
     driver: bridge
 
 volumes:
-  dbdata:
+  dbdata: {}
+  bw-backend-data: {}
+  bw-client-data: {}
