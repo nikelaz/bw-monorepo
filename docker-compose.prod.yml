@@ -39,7 +39,7 @@ services:
     command: npm run start
 
   database:
-    image: postgres
+    image: postgres:15
     restart: always
     env_file: .env
     environment:
