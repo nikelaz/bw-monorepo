@@ -1,12 +1,13 @@
 name: Deployment Pipeline
 on: [workflow_dispatch]
+
 jobs:
   staging:
     name: Staging
     runs-on: ubuntu-latest
     environment: staging
     steps:
-    - name: remote into the ssh production server
+    - name: remote into staging server
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -15,19 +16,18 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           cd ~/bw-monorepo-stage
-          git stash
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose down 
-          git pull --rebase --recurse-submodules
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml build --no-cache
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d 
-          git stash pop
+          git checkout staging
+          git pull origin staging --force
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml down
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml pull
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d
   production:
     name: Production
     runs-on: ubuntu-latest
     environment: production
-    needs: Staging
+    needs: staging
     steps:
-    - name: remote into the ssh production server
+    - name: remote into production server
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -36,9 +36,8 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           cd ~/bw-monorepo
-          git stash
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose down 
-          git pull --rebase --recurse-submodules
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml build --no-cache
-          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d 
-          git stash pop
+          git checkout main
+          git pull origin main --force
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml down
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml pull
+          echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d

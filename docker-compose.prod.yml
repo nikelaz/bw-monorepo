@@ -17,9 +17,6 @@ services:
       - JWT_SECRET=$JWT_SECRET
     ports:
       - ${BE_SERVICE_PORT}:${BE_SERVICE_PORT}
-    volumes:
-      - ./packages/bw-backend-service:/usr/app/
-      - /usr/app/node_modules
     networks:
       - shared-network
     command: node ./dist/index.js
