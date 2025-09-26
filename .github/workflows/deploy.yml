@@ -18,11 +18,9 @@ jobs:
           cd ~/bw-monorepo-stage
           git checkout staging
           git pull origin staging --force
-
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml down
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml pull
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d
-
   production:
     name: Production
     runs-on: ubuntu-latest
@@ -40,7 +38,6 @@ jobs:
           cd ~/bw-monorepo
           git checkout main
           git pull origin main --force
-
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml down
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml pull
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d
