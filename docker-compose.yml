@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   backend-service:
-    image: ghcr.io/nikelaz/bw-backend-service:${BE_BRANCH_TAG}
+    image: ghcr.io/nikelaz/bw-backend-service:${BRANCH_TAG}
     restart: always
     depends_on:
       - database
@@ -24,7 +24,7 @@ services:
     command: node ./dist/index.js
 
   web-client:
-    image: ghcr.io/nikelaz/bw-web-client:${WEB_BRANCH_TAG}
+    image: ghcr.io/nikelaz/bw-web-client:${BRANCH_TAG}
     restart: always
     env_file: .env
     environment:
