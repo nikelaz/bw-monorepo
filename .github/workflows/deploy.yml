@@ -16,8 +16,8 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           cd ~/bw-monorepo-stage
-          git checkout staging
-          git pull origin staging --force
+          git checkout main
+          git pull origin main --force
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml down
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml pull
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose -f docker-compose.prod.yml up -d
