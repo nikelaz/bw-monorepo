@@ -42,7 +42,7 @@ services:
     command: npm run dev
 
   database:
-    image: postgres
+    image: postgres:17
     restart: always
     env_file: .env
     environment:
