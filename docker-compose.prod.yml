@@ -1,8 +1,6 @@
 services:
   backend-service:
-    build:
-      context: packages/bw-backend-service
-      dockerfile: Dockerfile.prod
+    image: ghcr.io/nikelaz/bw-backend-service:${BRANCH_TAG}
     restart: always
     depends_on:
       - database
@@ -16,24 +14,23 @@ services:
       - PG_DB=$PG_DB
       - JWT_SECRET=$JWT_SECRET
     ports:
-      - ${BE_SERVICE_PORT}:${BE_SERVICE_PORT}
+      - "${BE_SERVICE_PORT}:${BE_SERVICE_PORT}"
+    volumes:
+      - bw-backend-data:/usr/app/data   # persist app data if needed
     networks:
       - shared-network
     command: node ./dist/index.js
 
   web-client:
-    build:
-      context: packages/bw-web-client
-      dockerfile: Dockerfile.prod
+    image: ghcr.io/nikelaz/bw-web-client:${BRANCH_TAG}
     restart: always
     env_file: .env
     environment:
       - PORT=$WEB_CLIENT_PORT
     ports:
-      - ${WEB_CLIENT_PORT}:${WEB_CLIENT_PORT}
+      - "${WEB_CLIENT_PORT}:${WEB_CLIENT_PORT}"
     volumes:
-      - ./packages/bw-web-client:/usr/app/
-      - /usr/app/node_modules
+      - bw-client-data:/usr/app/data  # persist any client data if needed
     networks:
       - shared-network
     command: npm run start
@@ -59,4 +56,6 @@ networks:
     driver: bridge
 
 volumes:
-  dbdata:
+  dbdata: {}
+  bw-backend-data: {}
+  bw-client-data: {}
